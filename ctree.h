@@ -35,7 +35,7 @@ unsigned getHeight(tree t);
 void preOrder(tree t);
 void inOrder(tree t);
 void postOrder(tree t);
-tree getAbsPost(tree t);
+tree getAbsPos(tree t);
 void printTree(tree t);
 
 /* getAbsPos follow this "draw"
