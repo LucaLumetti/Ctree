@@ -1,3 +1,8 @@
+/*
+ * DO NOT COMPILE
+ * WATCH ctree.h
+ */
+
 #include "ctree.h"
 
 tree emptytree(){
