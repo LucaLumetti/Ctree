@@ -117,10 +117,12 @@ void tree_##NAME##_postOrder(tree_##NAME t) {                                 \
 }                                                                             \
                                                                               \
 void tree_##NAME##_destroy(tree_##NAME t){                                    \
-  if(tree_##NAME##_isEmpty(t))                                                \
+  if(tree_##NAME##_isEmpty(t)){                                               \
+    free(t);                                                                  \
     return;                                                                   \
-  tree_##NAME##_delete(tree_##NAME##_right(t));                               \
-  tree_##NAME##_delete(tree_##NAME##_left(t));                                \
+  }                                                                           \
+  tree_##NAME##_destroy(tree_##NAME##_right(t));                              \
+  tree_##NAME##_destroy(tree_##NAME##_left(t));                               \
   free(t);                                                                    \
 }
 
