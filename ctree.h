@@ -5,25 +5,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-/* PRIMITIVE */
-/*
-tree emptytree();
-tree consTree(tree_type d, tree l, tree r);
-tree left(tree t);
-tree right(tree t);
-tree_type root(tree t);
-bool empty(tree t);
-
-*//* NON PRIMITIE *//*
-tree appendLeft(tree_type d, tree t);
-tree appendRight(tree_type d, tree t);
-unsigned getHeight(tree t);
-void preOrder(tree t);
-void inOrder(tree t);
-void postOrder(tree t);
-tree getAbsPos(tree t);
-void printTree(tree t);
-*/
 #define INIT_TREE(NAME, TYPE, CMPFN, COPYFN, PRINTFN)                         \
 struct tree_##NAME##_node {                                                   \
   TYPE value;                                                                 \
@@ -40,6 +21,11 @@ extern tree_##NAME tree_##NAME##_left(tree_##NAME t);                         \
 extern tree_##NAME tree_##NAME##_right(tree_##NAME t);                        \
 extern TYPE tree_##NAME##_root(tree_##NAME t);                                \
 extern bool tree_##NAME##_isEmpty(tree_##NAME t);                             \
+extern size_t tree_##NAME##_height(tree_##NAME t);                            \
+extern void tree_##NAME##_preOrder(tree_##NAME t);                            \
+extern void tree_##NAME##_inOrder(tree_##NAME t);                             \
+extern void tree_##NAME##_postOrder(tree_##NAME t);                           \
+extern void tree_##NAME##_destroy(tree_##NAME t);                             \
                                                                               \
 /* -------- Functions -------- */                                             \
                                                                               \
@@ -81,7 +67,7 @@ bool tree_##NAME##_isEmpty(tree_##NAME t){                                    \
   return t == NULL;                                                           \
 }                                                                             \
                                                                               \
-unsigned tree_##NAME##_getHeight(tree_##NAME t){                              \
+size_t tree_##NAME##_getHeight(tree_##NAME t){                                \
   if(tree_##NAME##_isEmpty(t))                                                \
     return 0;                                                                 \
   unsigned hl = tree_##NAME##_getHeight(tree_##NAME##_left(t));               \
