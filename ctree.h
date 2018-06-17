@@ -36,8 +36,8 @@ typedef struct tree_##NAME##_node* tree_##NAME;                               \
                                                                               \
 extern tree_##NAME tree_##NAME##_new();                                       \
 extern tree_##NAME tree_##NAME##_cons(TYPE d, tree_##NAME l, tree_##NAME r);  \
-extern tree_##NAME left(tree_##NAME t);                                       \
-extern tree_##NAME right(tree_##NAME t);                                      \
+extern tree_##NAME tree_##NAME##_left(tree_##NAME t);                         \
+extern tree_##NAME tree_##NAME##_right(tree_##NAME t);                        \
 extern TYPE tree_##NAME##_root(tree_##NAME t);                                \
 extern bool tree_##NAME##_isEmpty(tree_##NAME t);                             \
                                                                               \
@@ -114,6 +114,14 @@ void tree_##NAME##_postOrder(tree_##NAME t) {                                 \
   tree_##NAME##_postOrder(tree_##NAME##_right(t));                            \
   (PRINTFN)(tree_##NAME##_root(t));                                           \
   printf(" ");                                                                \
+}                                                                             \
+                                                                              \
+void tree_##NAME##_destroy(tree_##NAME t){                                    \
+  if(tree_##NAME##_isEmpty(t))                                                \
+    return;                                                                   \
+  tree_##NAME##_delete(tree_##NAME##_right(t));                               \
+  tree_##NAME##_delete(tree_##NAME##_left(t));                                \
+  free(t);                                                                    \
 }
 
 #endif /* CTREE_H */
